@@ -5,7 +5,6 @@ import Cadastro from '../pages/Cadastro';
 import Login from '../pages/Login';
 
 const RotaPrivada = () => {
-    debugger
     const isLogado = localStorage.getItem("token")
   
     return isLogado ? <Outlet /> : <Navigate to="/login" replace />
