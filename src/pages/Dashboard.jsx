@@ -10,17 +10,13 @@ function Dashboard() {
         return localStorage.getItem("token");
     }
 
-    function login() {
-        window.location.href = "/login";
-    }
-
     return ( 
     <>
        <h1>Dashboard</h1> 
 
        {isLogado() && <button><Link to="/admin/cadastro">Cadastro</Link></button>}
        <button onClick={() => logout()}>logout</button>
-       <button onClick={() => login()}>Login</button>
+       <button><Link to="Login">Login</Link></button>
     </>
 );
 }
