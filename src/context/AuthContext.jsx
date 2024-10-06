@@ -11,7 +11,7 @@ export const AuthContextProvider = ({children}) => {
 
     const login = async (data) => {
 
-        const response = await axios.post("http://localhost:3000/login", data);
+        const response = await axios.post("https://api-nature-trip-revisao.onrender.com/login", data);
     
         if (response.data && response.status == 200) {
           localStorage.setItem("token", response.data.token);

@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const useAxios = axios.create({
-    baseURL: 'http://localhost:3000'
+    baseURL: 'https://api-nature-trip-revisao.onrender.com'
 })
 
 useAxios.interceptors.request.use(

@@ -8,7 +8,7 @@ function Login(){
 
     async function validarLogin(dados){
         try {
-            const response = await axios.post("http://localhost:3000/login", {
+            const response = await axios.post("https://api-nature-trip-revisao.onrender.com/login", {
                 email: dados.email,
                 senha: dados.senha
             })
@@ -18,6 +18,7 @@ function Login(){
                 localStorage.setItem('user', JSON.stringify(response.data.user))
 
                 // redirect para o dashboard
+                window.location.href = "/"
             }
         } catch (error){
             console.log(error)
