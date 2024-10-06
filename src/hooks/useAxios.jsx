@@ -1,24 +1,21 @@
-import axios from 'axios';
+import axios from "axios"
 
-const api = axios.create({
-    // baseURL: 'http://localhost:3000', 
-    baseURL: 'https://api-nature-trip-revisao-1.onrender.com', 
-});
+const useAxios = axios.create({
+    baseURL: 'https://api-nature-trip-revisao.onrender.com'
+})
 
-api.interceptors.request.use(
+useAxios.interceptors.request.use(
     (config) => {
-        const token = localStorage.getItem('token'); 
+        const token = localStorage.getItem('token')
 
-        if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
-            config.headers['Content-Type'] = 'application/json';
-        }
+        config.headers.Authorization = token
+        config.headers["Content-Type"] = 'application/json'
 
-        return config;
+        return config
     },
     (error) => {
         return Promise.reject(error);
     }
-);
+)
 
-export default api;
+export default useAxios

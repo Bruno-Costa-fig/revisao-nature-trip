@@ -1,32 +1,27 @@
-import { createBrowserRouter, Outlet, Navigate } from "react-router-dom";
+import {Navigate, Outlet, BrowserRouter, Routes, Route} from "react-router-dom"
+import { useContext } from "react"
+import {AuthContext} from "../context/AuthContext"
 
-import Dashboard from '../pages/Dashboard';
-import Cadastro from '../pages/Cadastro';
-import Login from '../pages/Login';
+import Login from "../pages/Login"
+import Cadastro from "../pages/Cadastro"
+import Dashboard from "../pages/Dashboard"
 
 const RotaPrivada = () => {
-    const isLogado = localStorage.getItem("token")
-  
-    return isLogado ? <Outlet /> : <Navigate to="/login" replace />
-  }
+    const {isLogado} = useContext(AuthContext)
 
-const routes = createBrowserRouter([
-    {
-        path: "/",
-        errorElement: <Navigate to="/" />,
-        element: <Dashboard />,
-    },
-    {
-        path: "/login",
-        element: <Login />,
-    },
-    {
-        path: "/admin",
-        element: <RotaPrivada />,
-        children: [
-            { path: 'cadastro', element: <Cadastro /> },
-        ]
-    },
-]);
+    return isLogado() ?  <Outlet /> : <Navigate to="/login" replace />
+}
 
-export default routes;
+export default function Rotas() {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/admin" element={<RotaPrivada />}>
+                    <Route path="cadastro" element={<Cadastro />}/>
+                </Route>
+            </Routes>
+        </BrowserRouter>
+    )
+}

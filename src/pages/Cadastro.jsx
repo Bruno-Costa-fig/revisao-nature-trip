@@ -1,24 +1,27 @@
 import React from 'react';
-import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import useAxios from '../hooks/useAxios';
+import axios from "axios"
+import useAxios from "../hooks/useAxios"
 
 const Cadastro = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = async (data) => {
-        const token = localStorage.getItem('token');
+        // let token = localStorage.getItem('token')
         try {
-            // const response = await axios.post('http://localhost:3000/users', data, {
+            // const response = await axios.post("http://localhost:3000/users", data, {
             //     headers: {
             //         'Authorization': `${token}`,
             //         'Content-Type': 'application/json'
             //     }
-            // });
-            const response = await useAxios.post('/users', data);
-            console.log(response.data);
-        } catch (error) {
-            console.error('There was an error registering the user!', error);
+            // })
+            const response = await useAxios.post("/users", data)
+
+            if(response.status == 200){
+                alert('Usuário cadastrado com sucesso!')
+            }
+        } catch (error){
+
         }
     };
 
